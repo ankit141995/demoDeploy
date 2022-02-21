@@ -430,7 +430,7 @@ const OrderList = ({ Reset, Edit, TO }) => {
 
         {/* <Button variant='success' className='Add-btn' onClick={handlerAdd}>Add Order</Button> */}
         <div class="Orderlist" id="accordionExample">
-            <h1>Order list</h1>
+            <h1>Order List</h1>
                 <div className='orderdatebtn'>
                     <input type='date' onChange={(e) => { setTime(e) }} className='dateinput'/>
                     <Button onClick={() => { ReadGoogleSheet(timeStamp, setOrderArr, setIsLoading) }}>Get orders from Googlesheet</Button>
