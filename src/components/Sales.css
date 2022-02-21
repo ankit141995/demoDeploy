@@ -1,0 +1,36 @@
+.form-div{
+    display:flex;
+    justify-content:center;
+    margin-top:50px
+}
+.form-card{
+    display:flex;
+    /* justify-content:center; */
+    /* align-items:center; */
+    flex-direction:column;
+    padding:0.25rem 2rem;
+    padding-top:10px;
+
+    width:650px;
+    min-height: 150px;
+    background-color:rgb(253, 255, 232);
+    border-radius:10px;
+    border:solid 1px ;
+    border-width:thin;
+    margin-bottom:20px
+}
+
+.form-input{
+    width:300px;
+    margin-top:40px;
+    margin-bottom:20px;
+    /* border:none; */
+    border-width:0 0 2px;
+    border-color:rgb(138, 67, 9);
+    background-color:transparent
+    
+}
+.logo{
+    display:flex;
+    justify-content:center;
+}
