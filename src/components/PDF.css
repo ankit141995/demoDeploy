@@ -1,0 +1,21 @@
+.Table{
+    background-color:white;
+    /* float:left; */
+    /* max-width: 10; */
+    /* max-width: 10; */
+    /* display:none; */
+    margin-top:40px
+    
+    
+}.main{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-bottom: 100px;
+}
+.pdf-btn{
+    display:flex;
+    justify-content:center
+}

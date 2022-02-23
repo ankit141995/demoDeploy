@@ -1,0 +1,38 @@
+#div_hover{
+    /* z-index: 100000; */
+    /* display: 'none'; */
+    min-height: 100px;
+    min-width:500px;
+    position: absolute;
+    background-color: red;
+    margin-left: 100px;
+    margin-bottom: 100px;
+}
+.s_box{
+    padding:10px;
+    display:flex;
+    z-index:300;
+    flex-direction:column;
+    border-radius:4px;
+     /* min-height: 100px; */
+    /* min-width:500px; */
+    position: absolute;
+    background-color:rgb(197, 196, 196);
+    margin-left: 15vw   ;
+    box-shadow: 1px 3px 5px rgb(131, 130, 130);
+
+    /* margin-bottom: -500px; */
+}
+p1{
+    font-weight:normal;
+    padding:5px;
+    /* background-color:rgb(167, 166, 166) */
+}
+p1:hover{
+    font-weight:normal;
+    padding:5px;
+    background-color:rgb(238, 238, 238)
+    
+
+}
+
