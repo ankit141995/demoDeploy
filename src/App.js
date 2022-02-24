@@ -50,7 +50,7 @@ const App = () => {
   //     return <Login setToken={setToken} />
   //   }
 setTimeout(()=>{
-    console.log('auth time out running', authed)
+ 
     // authed.setAuthed()
   }, 2000)
 

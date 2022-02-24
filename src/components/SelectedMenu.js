@@ -11,7 +11,7 @@ import AuthConsumer from './controllers/auth'
 
 
 const SelectedMenu = ({ Menu, Cross, url, GuestCount, Reset, Edit, updateItem, suggestions }) => {
-    console.log('SelectedMenu component start',    suggestions)
+    // console.log('SelectedMenu component start',    suggestions)
      const authed = AuthConsumer()
     let role= authed.user.role
     
@@ -29,14 +29,13 @@ const SelectedMenu = ({ Menu, Cross, url, GuestCount, Reset, Edit, updateItem, s
     })
 
     const locations = useLocation()
-    // console.log('location in selected menu' , locations)
+ 
 
     const Getquantity = async () => {
-        console.log('Get ingredients')
+    
         let res = await axios.post('/api', { menu: Menu.menu, guestCount: GuestCount })
             .then((res) => {
-                console.log(res.data.ingredients)
-                console.log(res.data.total)
+            
             })
         // console.log(res)
     }
@@ -111,7 +110,7 @@ let tot = allStorage()
                                         {idx + 1 + ' '}
                                         {item}
                                     </p>
-                                {suggestions && <HoverSuggestions cName={cName} idx={idx} handleLeave={handleLeave} suggestions={suggestions[idx]} updateItem={updateItem} key={idx}/>}
+                                {suggestions && <HoverSuggestions cName={cName} idx={idx} handleLeave={handleLeave} suggestions={suggestions[idx]} updateItem={updateItem}/>}
                                     <button type='button' className='trash-btn' onClick={e => Cross(e)}>X</button>
                                  {/* <div id={idx} style={showHover?{display:'flex'}:{display:'none'}}> */}
                                  {/* <h1>div{idx}</h1> */}

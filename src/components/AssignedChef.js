@@ -19,7 +19,7 @@ let i = 0
 const ReadGS = async(orderNumber, setChef)=>{
     // for(let i =0 ; i=99; i++){
     // clearInterval(i)}
-    console.log('-------------------Time out For assignchef' , interval)
+    // console.log('-------------------Time out For assignchef' , interval)
         setIsLoading(true)
         const res = await axios.post('/assignchef',{orderNumber, cancelToken: cancelTokenSource.token} ).then((res)=>{
         if(res.data[2]){

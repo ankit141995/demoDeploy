@@ -14,14 +14,11 @@ export const PDF = ({ disharr, orderlist, totalAmountArr }) => {
  let navigate = useNavigate()
 const [showTable, setShowTable] = useState(true)
  useEffect(() => {
-    //    console.log('PDF mounted')
        
     }, [])
     useEffect(() => {
-    //    console.log('PDF updated')
        
     })
-    // console.log('-------------------------------------------------------------------------')
 
     //Generate Pdf
    
@@ -38,12 +35,10 @@ const [showTable, setShowTable] = useState(true)
             let imgheight = imgHeight 
             doc.addImage(imgData, 'PNG', 5, position, imgWidth, imgHeight);
             heightLeft -= pageHeight;
-            // console.log('imageheight ', imgHeight)
-            // console.log(canvas.height, canvas.width)
-            // console.log('height left ' ,heightLeft)
+     
             while (heightLeft >= 0) {
                 position = heightLeft - imgHeight - 40; // top padding for other pages
-                console.log(position)
+               
                 doc.addPage();
                 doc.addImage(imgData, 'PNG', 5, position, imgWidth, imgHeight);
                 heightLeft -= pageHeight;
@@ -70,14 +65,13 @@ let options = {
 let res
 
 const Getquantity = async () => {
-        console.log('Get ingredients')
+        
          res = await axios.post('/api2', { menu: disharr, guestCount: totalAmountArr })
             .then((res) => {
-                // console.log(res.data.ingredients)
-                // console.log(res.data.total)
+                
                 return res.data
             })
-            console.log(res)
+        
             navigate('ing', {state:res})
             return res
         }
@@ -106,13 +100,13 @@ const Getquantity = async () => {
                     {disharr && disharr.map((val, idx) => {
                         // console.log(val)
                         return (
-                            <tr key={`tr2${idx}`}>
+                            <tr >
                                 <th>{idx + 1} {val.title}</th>
                                 {orderlist && orderlist.map((item) => {
                                     // if (item[val.title])
                                     // console.log(item[val.title])
                                     cell = val.title;
-                                    return <td key={`tr3${idx}`}>{item[val.title]}</td>;
+                                    return <td >{item[val.title]}</td>;
                                 })}
                                 <td>{totalAmountArr[cell]}</td>
                             </tr>

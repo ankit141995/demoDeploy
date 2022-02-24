@@ -15,11 +15,11 @@ const UpdateGS = () => {
     
 export const updateGooglesheet=async(orderno, chefdetails)=>{
     
-    console.log('hi udpate google is running ')
+   
     console.log(`${chefdetails} team is assigned for this order ${orderno} number` )
 
 
-    let res = await axios.post('/ac', {orderno, chefdetails}).then((res)=>{console.log(res)
+    let res = await axios.post('/ac', {orderno, chefdetails}).then((res)=>{
 return res})
 // console.log(res)
 // return <div>{`${chefdetails} team is assigned for this order ${orderno} number`}</div>

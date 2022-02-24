@@ -16,7 +16,7 @@ export const CreateUser = () => {
     }
 
     
-    console.log(formData)
+    // console.log(formData)
     return <>
     <div>
         <div className='logo'>

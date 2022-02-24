@@ -12,8 +12,7 @@ const ChefAssign = () => {
     const setVal=(e)=>{
         setChefDetails(e.target.value)
     }
-    let a = 'saurav' || 'chauhan'
-    console.log(a)
+  
     
     const setTime =(e)=>{
         //2021-12-17
@@ -32,7 +31,7 @@ const ChefAssign = () => {
         <Button onClick={()=>{ReadGoogleSheet( timeStamp, null) }}>Get orders from Googlesheet</Button>
 </div>
       {Object.values(allorders).map((item, idx)=>{
-          console.log(item)
+        //   console.log(item)
           return (<div>{JSON.stringify(item.order)}
       
         <textarea rows='4' cols='100' width='300' className='' onChange={e => setVal(e, idx)} name='address' placeholder='Your Anwer' value={chefDetails} ></textarea>

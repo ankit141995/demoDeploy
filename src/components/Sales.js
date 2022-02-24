@@ -72,7 +72,7 @@ const SalesForm = () => {
             )
 
         }
-        console.log(dishes)
+       
     }, [searchWords])
 
 
@@ -85,17 +85,17 @@ const SalesForm = () => {
 
     const setAddONs = (e) => {
         if (e.target.checked) {
-            console.log(e.target.checked)
+           
             setFormData(prev => ({ ...prev, addONs: { ...prev.addONs, [e.target.name]: e.target.checked } }))
             
         }
         else if (!e.target.checked) {
-            console.log(e.target.checked)
+           
             setFormData(prev => ({ ...prev, addONs: {...prev.addONs, [e.target.name]: e.target.checked } }))
 
         }
     }
-console.log(formData)
+
     const HandleSubmit = async (e) => {
         e.preventDefault()
         alert(
@@ -103,11 +103,9 @@ console.log(formData)
         )
         formData.dishes= dishes.menu
         //  setFormData((prev) => { return { ...prev, dishes: dishes.menu } })
-        console.log('dishes.menu inside handle submint ' , dishes.menu)
-        console.log(formData.dishes)
-        console.log('Handlesubmit')
+     
         const res = await axios.post('/form', { body: formData }).then(res => {
-            console.log(res.data)
+         
             // setDishes(prev => { return { ...prev, menu: res.data.data } })
 
             return res
@@ -144,8 +142,9 @@ console.log(formData)
         }
     }
     const updateItem = (e, idx) => {
-        console.log('updateItem',)
+      
         let itemName = e.target.innerText.trim()
+       
         dishes.menu[idx] = itemName
         // if (!dishes.menu.includes(itemName)) {
             setDishes(prev => { return { ...prev, menu: dishes.menu } })
@@ -166,7 +165,7 @@ console.log(formData)
             alert('already selected')
             // return false
         }
-        console.log('dishes inside add items ', dishes.menu)
+       
         setFormData((prev) => { return { ...prev, dishes: dishes.menu } })
         // console.log(e.target.parentNode.parentNode.parentNode.firstElementChild.nextSibling)
         e.target.parentNode.parentNode.parentNode.firstElementChild.nextSibling.focus()
@@ -175,10 +174,10 @@ console.log(formData)
     const updateState = (data) => {
         // setTextData(data)
         setSplit(data.split)
-        console.log('data suggestion in update state ' ,data.suggestions)
+       
         setTextData((prev)=>{if(prev.suggestions){console.log(prev.suggestions, 'prev textData.suggestions is here')
             return {...prev, suggestions:[...prev.suggestions].concat(data.suggestions)}}
-            else {console.log('data suggestions is here',data.suggestions)
+            else {
                 return {suggestions:data.suggestions}}
             
         })
@@ -229,8 +228,7 @@ console.log(formData)
                                 {
                                     dishes.filteredData.map((item, idx) =>
 
-                                    (<div key={`list${idx}`}className="list-group" id={idx}
-                                        key={idx} >
+                                    (<div key={`list${idx}`}className="list-group" id={idx} >
                                         <Button type="button" className="list-group-item list-group-item-action" aria-current="true"
                                             onClick={e => addItems(e, false, dishes.menu, setDishes, false, 'searchWords', setSearchWords)}>
                                             {item.dishName}

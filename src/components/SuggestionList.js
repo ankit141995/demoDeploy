@@ -11,7 +11,7 @@ import './SearchBar.css'
     //                                 </button>
     //                             </div>)
     //                         }).slice(0, 6)
-    console.log(filteredData)
+  
     return (
     // {searchWords.length >= 3 && (
 
@@ -20,7 +20,7 @@ import './SearchBar.css'
                         {filteredData.map((item, idx) => {
 
                                 return (<div className="list-group" id={idx}
-                                    key={idx} >
+                                 >
                                     <button type="button" className="list-group-item list-group-item-action" aria-current="true" onClick={e=>addItems(e)}>
                                         {item.dishName}
                                     </button>

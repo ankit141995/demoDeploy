@@ -33,4 +33,6 @@
 .logo{
     display:flex;
     justify-content:center;
+    z-index:-200;
+    margin-top:10px
 }

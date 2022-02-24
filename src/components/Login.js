@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import PropTypes from 'prop-types';
-import { Form, Button } from 'react-bootstrap'
+
+import { Form, Button, Spinner } from 'react-bootstrap'
 import './Login.css'
 // import axios from 'axios'
-import { setWithExpiry, getWithExpiry } from './storage.js'
+
 import { useNavigate, Navigate, useLocation } from 'react-router-dom'
 import AuthConsumer from '../components/controllers/auth';
 
@@ -19,16 +19,17 @@ const Login = ({setToken}) => {
   const authed = AuthConsumer();
   // console.log(state)
   const [isAuth, setIsAuth] =  useState(false)
+  const [isLoading, setIsLoading] = useState(false)
   
   const setloginCred = (e) => {
-    if (e.target.name == 'user') { setUser((prev => { return { ...prev, user: e.target.value } })) }
+    if (e.target.name == 'user') { setUser((prev => { return { ...prev, user: e.target.value.toLowerCase().trim() } })) }
     if (e.target.name == 'pass') { setUser((prev => { return { ...prev, password: e.target.value } })) }
   }
   // console.log(authed)
   navigate = useNavigate();
   
   const handleSubmit = async (e) => {
-    
+    setIsLoading(true)
     // e.preventDefault()
     if(user.user&& user.password){
       console.log('submit clicked')
@@ -42,13 +43,13 @@ const Login = ({setToken}) => {
         
       //   return res
       // })
-      authed.login(url, user)
+      authed.login(url, user, setIsLoading)
       // navigate(state?.path || "/")
       // console.log(res.data.auth)
       
       // if(res.data.auth){
             // navigate('/' ,{replace:true})
-            console.log('navigated')
+            // console.log('navigated')
           // }
           // else alert('Wrong Email and Password')
       // return (<Navigate to='/'/> )
@@ -116,7 +117,7 @@ const Login = ({setToken}) => {
             <label>Password</label>
             <input type='password' placeholder='Enter Password...'/>
             </form> */}
-        <button onClick={e => handleSubmit(e)}>Login</button>
+       {isLoading?<Spinner animation="border" role="status"></Spinner>: <button onClick={e => handleSubmit(e)}>Login</button>}
       </div>
     </div>
   )

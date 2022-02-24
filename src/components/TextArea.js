@@ -11,7 +11,7 @@ const SubmitText= async (e)=>{
     // console.log(e.target.parentNode.firstElementChild)
     let val =e.target.parentNode.firstElementChild.value
     let res= await axios.post(url, {body:val}).then((res)=>{
-        console.log(res.data)
+     
         UpdateState(res.data)
         return res})
       

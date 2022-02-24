@@ -38,20 +38,17 @@ const SearchBar = ({ placeHolder }) => {
             headers: {
                 'x-access-token': getWithExpiry('auth'),
 			},
-		}).then(res=>{console.log('response of x-access-token' ,res.data)
+		}).then(res=>{
         if (res.statusText === 'OK') {
-            console.log('res.statusText==="OK"')
             // Edit(me, ge, he)
             
             setQuote(res)
-            console.log('x-access-token res' , res)
         } else {
             alert('error')
         }
         return res.data})
 
 		
-        console.log('populateRole',req)
 	}
 
 
@@ -61,14 +58,10 @@ const SearchBar = ({ placeHolder }) => {
 
 
     useEffect(async() => {
-        // console.log('seachBar mounted')
         const token = await getWithExpiry('auth')
-        console.log(token)
 		if (!token==[]) {
 			const user = jwt.decode(token)
-            console.log('user in search bar       l  l   l ' , user)
 			if (!user) {
-                console.log('user is false')
 				localStorage.removeItem('auth')
 				// navigate('/login')
 			} else if(user){
@@ -76,22 +69,15 @@ const SearchBar = ({ placeHolder }) => {
 			}
 		}
         // else{
-        //     console.log('else loop ') 
         //     // navigate('/login')
         // }
         Edit(me, ge, he, a, b, c, d, e, f, g)
-        console.log('useEffect first mount', temp.menu)
     }, [])
 
 
-    useEffect(() => {
-        // console.log('seachBar updated')
-        console.log('useEffect', temp.menu)
-
-    })
+    
 
     let location = useLocation()
-    // console.log('search bar location ', location.state)
 
 
     const [Menu, setMenu] = useState([])
@@ -118,7 +104,6 @@ const SearchBar = ({ placeHolder }) => {
                 }
             )
                 .then((res) => {
-                    // console.log(res.data)
                     setTemp(prev => {
                         return {
                             ...prev,
@@ -132,7 +117,6 @@ const SearchBar = ({ placeHolder }) => {
 
         if (searchWords.length >= 3) {
             sendValue(url)
-            // console.log('temp inside the if part of useEffect', temp.menu)
 
 
 
@@ -155,7 +139,6 @@ const SearchBar = ({ placeHolder }) => {
 
     const addItems = (e) => {
         let itemName = e.target.innerText.trim()
-        // console.log('inner HTML is here' , e.target.innerText)
         if (!Menu.includes(itemName)) {
             setMenu([...Menu, itemName])
             setTemp(prev => { return { ...prev, menu: [...prev.menu, itemName], searchWords: '', flag: false } })
@@ -166,7 +149,6 @@ const SearchBar = ({ placeHolder }) => {
             alert('already selected')
             // return false
         }
-        // console.log(e.target.parentNode.parentNode.parentNode.firstElementChild.nextSibling)
         e.target.parentNode.parentNode.parentNode.firstElementChild.nextSibling.focus()
     }
 
@@ -177,26 +159,18 @@ const SearchBar = ({ placeHolder }) => {
         let foodName = itemName.replace(/^[0-9]+/g, '').trim()
         let indexofItem = temp.menu.indexOf(foodName)
 
-        // console.log(Menu, Menu.includes(`${foodName}`))
-        console.log(temp.menu.includes(foodName), foodName)
-        console.log('temp.menu is here ', temp.menu)
         if (temp.menu.includes(foodName)) {
             Menu.splice(indexofItem, 1)
-            console.log('hi')
             setTemp(prev => { 
                 temp.menu.splice(indexofItem, 1)
                 
                 return { ...prev, menu: temp.menu } })
             setMenu([...Menu])
-            console.log(Menu)
-            console.log(`  ||  ${foodName} is present  ||`, 'at index ', indexofItem)
             
         }
         else {
-            // console.log('value is not present', typeof (Menu[0]), `${foodName}`)
         }
     }
-    console.log('temp.menu is here ', temp.menu)
 
 
     const memoCross = useCallback(Cross, [temp])
@@ -258,13 +232,11 @@ const SearchBar = ({ placeHolder }) => {
  
 
     const confirm = (idx) => {
-        console.log('confirm button is here ', temp, idx)
         authrole=='basic' && updateGooglesheet(temp.order, temp.chef)
         navigate('/pdfgenerator/orders', {state:{ temp:temp, idx:idx}})
     }
 
     const updateItem = (e, idx)=>{
-        console.log('updateItem',)
         let itemName = e.target.innerText.trim()
       temp.menu[idx]= itemName
       if(!temp.menu.includes(itemName)){
@@ -294,7 +266,6 @@ const SearchBar = ({ placeHolder }) => {
     let json = {}
     const handlerAdd = (e, idx) => {
         // e.preventDefault()
-        console.log('handle add in serach bar compo')
 
         if (temp.menu.length !== 0 && temp.guest !== 0) {
 
@@ -322,13 +293,12 @@ const SearchBar = ({ placeHolder }) => {
             // setTemp((prev)=>{return {...prev , menu:allStorage()}})
             Reset()
             setNum((prev) => (prev += 1));
-            // console.log("json is here ", json[key], temp);
         }
         else {
             alert("please fill all the fields ")
         }
     };
-    // console.log('searchBar component ended')
+
     return (
         <>
             <div className='Main' id='id5'>
@@ -451,7 +421,6 @@ const SearchBar = ({ placeHolder }) => {
                         {temp.flag && temp.filteredData && (
 
 
-                            // console.log('this is the flag', temp.flag, 'guest count is here ', temp.guest),
                             <div className='dataResults'>
                                 {
                                     temp.filteredData.map((item, idx) =>
