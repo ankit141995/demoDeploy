@@ -19,36 +19,41 @@ function useProvideAuth() {
   // setAuthed(token)
 
 
-const timer=(token)=>{
+// const timer=(token)=>{
   
-  return setTimeout(()=>{
-    console.log('auth time out running')
-    setAuthed(token)
-  }, 10000)}
+//   return setTimeout(()=>{
+//     console.log('auth time out running')
+//     setAuthed(token)
+//   }, 10000)}
 
 var jwttoken
-const login=async(url, user)=>{
+const login=async(url, user, setIsLoading)=>{
   
   const res = await axios.post(url, user).then((res) => {
+    if(res.data.auth){
   jwttoken = jwt.sign(res.data.auth, 'secret', {
   // expiresIn:'1h'
   })
-        console.log(jwttoken)
+        // console.log(jwttoken)
         
         // setWithExpiry('auth', res.data.token, 10000)
-        setToken(res.data.token)
-        setAuthed(jwttoken)
-        
+          setToken(res.data.token)
+          setAuthed(jwttoken)
+          setUser(res.data)
+          navigate(state?.path || "/")
+        }
+        else{
+          setIsLoading(false)
+          alert('Wrong email and password')
+        }
         // timer(jwttoken)
-        setUser(res.data)
-        navigate(state?.path || "/")
         return res
       })}
 
 
   return {
     authed,
-    setAuthed, login, user, timer
+    setAuthed, login, user, 
     // login() {
     //   return new Promise((res) => {
     //     setAuthed(true);

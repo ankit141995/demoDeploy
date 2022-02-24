@@ -2,7 +2,7 @@ import axios from "axios"
 import React , {useState} from 'react'
 import {allStorage} from './storage.js'
 
-let sheetUrl = 'http://127.0.0.1:3030/result'
+let sheetUrl = '/result'
 export const ReadGoogleSheet = async( timeStamp, setOrderArr,setIsLoading )=>{
     // const [sheetData, setSheetData] = useState({})
 console.log(timeStamp)
@@ -21,7 +21,7 @@ if(timeStamp){
             if(keys[i].includes('Order')){
             localStorage.removeItem(keys[i])
         }
-        console.log(res.data.values)
+        // console.log(res.data.values)
     }
 
         
@@ -29,7 +29,7 @@ if(timeStamp){
         const orderlist = res.data.values
         orderlist.map((order, idx)=>{
             
-             if(order[4]&&order[4].includes(timeStamp)){console.log('order from google sheet' , order)
+             if(order[4]&&order[4].includes(timeStamp)){
             let json=  {}
             let orderno = order[2].replace(/[ ]+/g, "").replace(/\s/g, '$').trim()
            let key = `OrderNumber-${orderno}`;
@@ -40,7 +40,7 @@ if(timeStamp){
            let  menu= split.map((item)=>{
                // let dishitem = item.replace(/[0-9].\t/g , "").replace(/^\d+\. \s+/, '').trim()
                let dishitem = item.replace(/^\d+\.\s*/, '').trim()
-               console.log(dishitem)
+            //    console.log(dishitem)
                return dishitem
             })
             //order object

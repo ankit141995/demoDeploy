@@ -10,7 +10,7 @@ import Logo from './GarnicheLOGO.png'
 
 
 const SalesForm = () => {
-    let url = 'http://127.0.0.1:3030/api'
+    let url = '/api'
    const initialFormData = {
         advancePaid: "",
         agent: "",
@@ -72,7 +72,7 @@ const SalesForm = () => {
             )
 
         }
-        console.log(dishes)
+       
     }, [searchWords])
 
 
@@ -85,17 +85,17 @@ const SalesForm = () => {
 
     const setAddONs = (e) => {
         if (e.target.checked) {
-            console.log(e.target.checked)
+           
             setFormData(prev => ({ ...prev, addONs: { ...prev.addONs, [e.target.name]: e.target.checked } }))
             
         }
         else if (!e.target.checked) {
-            console.log(e.target.checked)
+           
             setFormData(prev => ({ ...prev, addONs: {...prev.addONs, [e.target.name]: e.target.checked } }))
 
         }
     }
-console.log(formData)
+
     const HandleSubmit = async (e) => {
         e.preventDefault()
         alert(
@@ -103,11 +103,9 @@ console.log(formData)
         )
         formData.dishes= dishes.menu
         //  setFormData((prev) => { return { ...prev, dishes: dishes.menu } })
-        console.log('dishes.menu inside handle submint ' , dishes.menu)
-        console.log(formData.dishes)
-        console.log('Handlesubmit')
-        const res = await axios.post('http://127.0.0.1:3030/form', { body: formData }).then(res => {
-            console.log(res.data)
+     
+        const res = await axios.post('/form', { body: formData }).then(res => {
+         
             // setDishes(prev => { return { ...prev, menu: res.data.data } })
 
             return res
@@ -144,8 +142,9 @@ console.log(formData)
         }
     }
     const updateItem = (e, idx) => {
-        console.log('updateItem',)
+      
         let itemName = e.target.innerText.trim()
+       
         dishes.menu[idx] = itemName
         // if (!dishes.menu.includes(itemName)) {
             setDishes(prev => { return { ...prev, menu: dishes.menu } })
@@ -166,7 +165,7 @@ console.log(formData)
             alert('already selected')
             // return false
         }
-        console.log('dishes inside add items ', dishes.menu)
+       
         setFormData((prev) => { return { ...prev, dishes: dishes.menu } })
         // console.log(e.target.parentNode.parentNode.parentNode.firstElementChild.nextSibling)
         e.target.parentNode.parentNode.parentNode.firstElementChild.nextSibling.focus()
@@ -175,10 +174,10 @@ console.log(formData)
     const updateState = (data) => {
         // setTextData(data)
         setSplit(data.split)
-        console.log('data suggestion in update state ' ,data.suggestions)
+       
         setTextData((prev)=>{if(prev.suggestions){console.log(prev.suggestions, 'prev textData.suggestions is here')
             return {...prev, suggestions:[...prev.suggestions].concat(data.suggestions)}}
-            else {console.log('data suggestions is here',data.suggestions)
+            else {
                 return {suggestions:data.suggestions}}
             
         })
@@ -194,32 +193,32 @@ console.log(formData)
             <div className='form-div'>
                 <form onSubmit={e => HandleSubmit(e)}>
                     <div className='form-card'>
-                        <lable>Email Address</lable>
+                        <label>Email Address</label>
                         <input type='email' className='form-input' onChange={e => setVal(e)} name='email' placeholder='Your Anwer' ></input>
                     </div>
                     <div className='form-card'>
-                        <lable>Order Number</lable>
+                        <label>Order Number</label>
                         <input type='text' className='form-input' onChange={e => setVal(e)} name='order' placeholder='Your Anwer' ></input>
                     </div>
                     <div className='form-card'>
-                        <lable>Sales Agent</lable>
+                        <label>Sales Agent</label>
                         <input type='text' className='form-input' onChange={e => setVal(e)} name='agent' placeholder='Your Anwer' ></input>
                     </div>
                     <div className='form-card'>
-                        <lable>Order Date</lable>
+                        <label>Order Date</label>
                         <input type='Date' className='form-input' onChange={e => setVal(e)} name='date' placeholder='Your Anwer' ></input>
                     </div>
                     <div className='form-card'>
-                        <lable>Costumer Name</lable>
+                        <label>Costumer Name</label>
                         <input type='text' className='form-input' onChange={e => setVal(e)} name='costumerName' placeholder='Your Anwer'></input>
                     </div>
 
                     <div className='form-card'>
-                        <lable>Guest Count</lable>
+                        <label>Guest Count</label>
                         <input type='number' className='form-input' onChange={e => setVal(e)} name='guest' placeholder='Your Anwer'></input>
                     </div>
                     <div className='form-card'>
-                        <lable>Choices Of Dishes</lable>
+                        <label>Choices Of Dishes</label>
                         <input type='text' className='form-input' value={searchWords} onChange={e => setSearchWords(e.target.value)} name='dishes' placeholder='Your Anwer' ></input>
                         {dishes.flag && dishes.filteredData && (
 
@@ -229,8 +228,7 @@ console.log(formData)
                                 {
                                     dishes.filteredData.map((item, idx) =>
 
-                                    (<div key={`list${idx}`}className="list-group" id={idx}
-                                        key={idx} >
+                                    (<div key={`list${idx}`}className="list-group" id={idx} >
                                         <Button type="button" className="list-group-item list-group-item-action" aria-current="true"
                                             onClick={e => addItems(e, false, dishes.menu, setDishes, false, 'searchWords', setSearchWords)}>
                                             {item.dishName}
@@ -243,68 +241,68 @@ console.log(formData)
                         <TextArea UpdateState={updateState} />
                     </div>
                     <div className='form-card'>
-                        <lable>Add Ons </lable>
+                        <label>Add Ons </label>
                         <div>
                             <input type="checkbox" id="addOn1" onChange={e => setAddONs(e)} name="Cooking utensils" />
-                            <label for="addOn1">Cooking utensils(in which team cooks)</label>
+                            <label hmtlFor="addOn1">Cooking utensils(in which team cooks)</label>
                         </div>
 
                         <div>
                             <input type="checkbox" id="addOn2" onChange={e => setAddONs(e)} name="Serving platters" />
-                            <label for="addOn2">Serving platters(in which food is served)</label>
+                            <label htmlFor="addOn2">Serving platters(in which food is served)</label>
                         </div>
                         <div>
                             <input type="checkbox" id="addOn3" onChange={e => setAddONs(e)} name="Eating cutlery" />
-                            <label for="addOn3">Eating cutlery (in which guest eat)</label>
+                            <label htmlFor="addOn3">Eating cutlery (in which guest eat)</label>
                         </div>
                         <div>
                             <input type="checkbox" id="addOn4" onChange={e => setAddONs(e)} name="OVEN/OTG" />
-                            <label for="addOn4">OVEN/OTG</label>
+                            <label htmlFor="addOn4">OVEN/OTG</label>
                         </div>
                         <div>
                             <input type="checkbox" id="addOn5" onChange={e => setAddONs(e)} name="Others" />
-                            <label for="addOn5">Others</label>
+                            <label htmlFor="addOn5">Others</label>
                             <input type='text' disabled={formData.addONs['Others']==true?false:true} className='form-input' onChange={e => setVal(e)} name='other' placeholder={formData.addONs['Others']==true?'Type here...':''} ></input>
                         </div>
                     </div>
                     <div className='form-card'>
-                        <lable>Order Slot</lable>
+                        <label>Order Slot</label>
                         <div>
                             <input type="radio" id="morning" onChange={e => setVal(e)} name="orderslot" value="Morning" />
-                            <label for="Morning">Morning</label>
+                            <label htmlfor="Morning">Morning</label>
                         </div>
 
                         <div>
                             <input type="radio" id="afternoon" onChange={e => setVal(e)} name="orderslot" value="Afternoon" />
-                            <label for="Afternoon">Afternoon</label>
+                            <label htmlfor="Afternoon">Afternoon</label>
                         </div>
 
                         <div>
                             <input type="radio" id="evening" onChange={e => setVal(e)} name="orderslot" value="Evening" />
-                            <label for="Evening">Evenning</label>
+                            <label htmlfor="Evening">Evenning</label>
                         </div>
 
 
                         {/* <input type='radion' placeholder='Your Anwer'></input> */}
                     </div>
                     <div className='form-card'>
-                        <lable>Serving Time</lable>
+                        <label>Serving Time</label>
                         <input type='text' className='form-input' onChange={e => setVal(e)} name='servingTime' placeholder='Your Anwer'></input>
                     </div>
                     <div className='form-card'>
-                        <lable>Pickup Time</lable>
+                        <label>Pickup Time</label>
                         <input type='text' className='form-input' onChange={e => setVal(e)} name='pickupTime' placeholder='Your Anwer' ></input>
                     </div>
                     <div className='form-card'>
-                        <lable>Costumer Location</lable>
+                        <label>Costumer Location</label>
                         <input type='text' className='form-input' onChange={e => setVal(e)} name='location' placeholder='Your Anwer'></input>
                     </div>
                     <div className='form-card'>
-                        <lable>Total Billing Amount</lable>
+                        <label>Total Billing Amount</label>
                         <input type='text' className='form-input' onChange={e => setVal(e)} name='totalBill' placeholder='Your Anwer'></input>
                     </div>
                     <div className='form-card'>
-                        <lable>Advance Amount Received</lable>
+                        <label>Advance Amount Received</label>
                         <input type='text' className='form-input' onChange={e => setVal(e)} name='advancePaid' placeholder='Your Anwer'></input>
                     </div>
                     <button type='submit'>Submit</button>

@@ -7,7 +7,7 @@ export default function useToken() {
     // console.log('token string ', tokenString)
     const userToken = JSON.parse(tokenString);
     // console.log('token stirng parse ', userToken)
-    return userToken?true:false
+    return userToken
     // return userToken
   };
 // console.log('get token function is here ', getToken())

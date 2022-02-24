@@ -12,13 +12,15 @@ const HomePage = () => {
         navigate('/login', {replace:true})
     }
     
-    let role= authed.user.result.role
-    console.log(authed.user)
+    let role= authed.user.role
+    const str = authed.user.name;
+const ProfileName = str.charAt(0).toUpperCase() + str.slice(1);
+    // console.log(authed.user)
     return (
         <div>
 
             <div className='nav-bar' >
-                <h1>{authed.user.result.name}</h1>
+                <h1 className='p_name'>{ProfileName}</h1>
                 <div className='left-side'>
                 <Link className="nav-link" to='/' >Home Page</Link>
                {role=='admin'&&  <Link className="nav-link" to='/createuser'>Create User</Link>}

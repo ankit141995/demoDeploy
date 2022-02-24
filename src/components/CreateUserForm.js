@@ -16,7 +16,7 @@ export const CreateUser = () => {
     }
 
     
-    console.log(formData)
+    // console.log(formData)
     return <>
     <div>
         <div className='logo'>
@@ -26,34 +26,34 @@ export const CreateUser = () => {
                 <form className='createuserform' onSubmit={e => HandleSubmit(e)}>
                     <div className='detail1'>
                     <div className='form-field'>
-                        <lable>Name</lable>
+                        <label>Name</label>
                         <input type='email' className='' onChange={e => setVal(e)} name='name' placeholder='Your Anwer' value={formData.name} ></input>
                     </div>
                     <div className='form-field'>
-                        <lable>Email</lable>
+                        <label>Email</label>
                         <input type='text' className='' onChange={e => setVal(e)} name='email' placeholder='Your Anwer' value={formData.email} ></input>
                     </div>
                     <div className='form-field'>
-                        <lable>Address</lable>
+                        <label>Address</label>
                         <textarea rows='4' cols='100' width='300' className='' onChange={e => setVal(e)} name='address' placeholder='Your Anwer' value={formData.address} ></textarea>
                     </div>
                     <div className='form-field'>
-                        <lable>Employee Id</lable>
+                        <label>Employee Id</label>
                         <input type='number' className='' onChange={e => setVal(e)} name='employid' value={formData.employid} placeholder='Your Anwer' ></input>
                     </div>
                     <div className='form-field'>
-                        <lable>PassWord</lable>
+                        <label>PassWord</label>
                         <input type='number' className='' onChange={e => setVal(e)} name='password' placeholder='Your Anwer' value={formData.password} ></input>
                     </div>
                      </div>
                     
                     <div className='detail1'>
                     <div className='form-field'>
-                        <lable>PassWord</lable>
+                        <label>PassWord</label>
                         <input type='number' className='' onChange={e => setVal(e)} name='cpassword' placeholder='Your Anwer' value={formData.cpassword} ></input>
                 </div>
                         <div className='form-field'>
-                            <label for="role">Choose a Role</label>
+                            <label htmlFor="role">Choose a Role</label>
                             <select name="role" id="authorid" onChange={e=>setVal(e)} value={formData.role}>
                                 <option value="---">---</option>
                                 <option value="admin">Administrator</option>

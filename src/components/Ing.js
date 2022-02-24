@@ -5,7 +5,7 @@ import jsPDF from 'jspdf'
 import 'jspdf-autotable'
 const Ing = (res) => {
     let location = useLocation()
-    console.log(location.state)
+    // console.log(location.state)
     
     const downloadPdf = () => {
         const doc = new jsPDF('p', 'px', 'a4')

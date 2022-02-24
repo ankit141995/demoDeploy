@@ -28,11 +28,11 @@ let OrderDetails = JSON.parse(localStorage.getItem('OrderDetails'))
 let orderNumber
 const OrderList = ({ Reset, Edit, TO }) => {
     const authed = AuthConsumer()
-    let authrole = authed.user.result.role
+    let authrole = authed.user.role
     const [timeStamp, setTimeStamp] = useState('')
     const [isLoading, setIsLoading]=useState(false)
     let location = useLocation()
-    // console.log('location in orderlist ', location)
+
     const [orderArr, setOrderArr] = useState(allStorage())
 
     const [role, setRole] = useState('')
@@ -40,13 +40,13 @@ const OrderList = ({ Reset, Edit, TO }) => {
 
 
     const populateRole = async () => {
-        const req = await axios.get('http://127.0.0.1:3030/login', {
+        const req = await axios.get('/login', {
 
             headers: {
                 'x-access-token': getWithExpiry('auth'),
             },
         }).then(res => {
-            console.log('response of x-access-token', res)
+           
             if (res.statusText === 'OK') {
                 setRole(res)
             } else {
@@ -55,25 +55,24 @@ const OrderList = ({ Reset, Edit, TO }) => {
         })
 
 
-        // console.log('populate', req)
+        
     }
-    // console.log(role)
+   
     useEffect(() => {
         orderNumber = allStorage();
-        // console.log('orderlist mounted')
+     
 
         if (location.state == null) {
 
-            // console.log('seachBar mounted')
-            // console.log('hello from orderlist when you clicked order if')
+          
 
             const token = getWithExpiry('auth')
-            console.log(token)
+         
             if (!token == []) {
                 const user = jwt.decode(token)
-                console.log('user in search bar       l  l   l ', user)
+            
                 if (!user) {
-                    console.log('user is false')
+                  
                     // localStorage.removeItem('auth')
                     // navigate('/login')
                 } else if (user) {
@@ -82,15 +81,14 @@ const OrderList = ({ Reset, Edit, TO }) => {
             }
             return false
         } else {
-            console.log('seachBar mounted')
-            console.log('hello from orderlist when you clicked order else ')
+          
             const token = getWithExpiry('auth')
-            console.log(token)
+        
             if (!token == []) {
                 const user = jwt.decode(token)
-                console.log('user in search bar       l  l   l ', user)
+               
                 if (!user) {
-                    console.log('user is false')
+                  
                     // localStorage.removeItem('auth')
                     // navigate('/login')
                 } else if (user) {
@@ -104,8 +102,7 @@ const OrderList = ({ Reset, Edit, TO }) => {
     useEffect(() => {
         orderNumber = allStorage();
         //  setOrderArr(orderNumber)
-        // console.log('hi updated orderlist')
-        // console.log('hello from orderlist when you clicked order if')
+    
 
     }, [timeStamp])
 
@@ -113,11 +110,9 @@ const OrderList = ({ Reset, Edit, TO }) => {
 
 
 
-    // console.log('orderNumber is here ', orderNumber)
-    // console.log(OrderDetails)
 
     let navigate = useNavigate();
-    // console.log('order list component started ')
+ 
     const [orders, setOrders] = useState([]);
     // const [num, setNum] = useState(orderNumber.length !== 0 ? orderNumber.length + 1 : 1);
     const [isToggle, setIsToggle] = useState({
@@ -131,11 +126,10 @@ const OrderList = ({ Reset, Edit, TO }) => {
 
     useEffect(() => {
         // setWithExpiry(order, orderArr, orderNumber, 86400000)
-        // console.log('orderArr inside useEffect', orderArr)
+       
         setOrders(json)
     }, [])
-    // console.log(orderArr.length)
-    // TO(orderArr.length);
+  
 
     const handlerAdd = (e, idx) => {
         e.preventDefault()
@@ -158,14 +152,14 @@ const OrderList = ({ Reset, Edit, TO }) => {
         localStorage.setItem(key, JSON.stringify(json[key]))
         setOrderArr(orderNumber)
         Reset()
-        console.log("json is here ", json[key], idx);
+     
         // }
         // else {
         //     alert("please fill all the fields ")
         // }
     };
 
-    // console.log('order arr is here ', orderArr)
+  
     let i
     const handlerDel = (e, idx, onum) => {
         e.preventDefault()
@@ -180,11 +174,11 @@ const OrderList = ({ Reset, Edit, TO }) => {
             orderNumber.splice(idx, 1)
 
             setOrderArr(orderNumber)
-            console.log(e.target.className.includes(idx))
+       
             setIsToggle((prev) => { return { ...prev, edit: false } })
             localStorage.removeItem(key)
 
-            console.log("json is here ", json);
+           
 
         } else {
 
@@ -192,7 +186,7 @@ const OrderList = ({ Reset, Edit, TO }) => {
 
                 let key;
                 key = `OrderNumber-${onum}`;
-                console.log(e.target.className, idx)
+               
                 delete json[key]
 
                 orderNumber.splice(idx, 1)
@@ -201,7 +195,7 @@ const OrderList = ({ Reset, Edit, TO }) => {
                 setIsToggle((prev) => { return { ...prev, edit: false } }
                 )
                 localStorage.removeItem(key)
-                console.log("json is here ", json);
+            
             } else {
                 alert('wrong delete')
             }
@@ -215,7 +209,7 @@ const OrderList = ({ Reset, Edit, TO }) => {
         orderNumber = allStorage()
         // e.target.parentNode.parentNode.firstChild.firstElementChild.className = `btn btn-danger ${idx}`
         let orderNO = e.target.parentNode.parentNode.parentNode.firstChild.innerText
-        console.log('handle edit  ', idx, orderNumber)
+        
         navigate(`edit/${o}`, {
             state: {
 
@@ -237,7 +231,7 @@ const OrderList = ({ Reset, Edit, TO }) => {
         })
         e.target.className = `btn btn-success ${idx}`
         e.target.innerText = 'Confirm Order'
-        console.log(e.target.parentNode.parentNode.parentNode.firstChild.innerText)
+       
         if (e.target.className.includes(idx)) {
 
             // Edit(orderNumber[idx].menu, orderNumber[idx].guestCount, orderNumber[idx].order)
@@ -247,9 +241,7 @@ const OrderList = ({ Reset, Edit, TO }) => {
 
     }
     const confirm = (temp, idx) => {
-        console.log('confirm working fine')
-
-        console.log(temp, idx)
+       
         let key;
         key = `OrderNumber-${temp.order}`;
         json[key] = {
@@ -272,8 +264,7 @@ const OrderList = ({ Reset, Edit, TO }) => {
         localStorage.setItem(key, JSON.stringify(json[key]))
 
     }
-    // console.log('location in ordelist', location.state)
-    // console.log(orderNumber)
+ 
     const AddAnother = () => {
         // localStorage.getItem('auth') ? navigate('/') : navigate('/login')
         navigate('/pdfgenerator')
@@ -287,7 +278,7 @@ const OrderList = ({ Reset, Edit, TO }) => {
 
 
     let dishes = []
-    console.log('orderARR is here ', orderArr)
+   
 
 
 
@@ -370,7 +361,7 @@ const OrderList = ({ Reset, Edit, TO }) => {
         doc.text("All Orders Details", 20, 10)
         doc.autoTable({ theme: 'grid', html: '#Table' })
         doc.save('table.pdf')
-        // console.log(orange)
+     
     }
 
 
@@ -391,7 +382,7 @@ const OrderList = ({ Reset, Edit, TO }) => {
         // var replaced = str.split(' ').join('');      
         var replaced = str.replace(/\s/g, "-").toString().trim();
         let onew = o.replace(/ /g, '').trim().toString()
-        console.log(`hello${replaced}whatsup`)
+    
         html2canvas(document.querySelector(`#can${o}`)).then((canvas) => {
             // document.body.appendChild(canvas);  // if you want see your screenshot in body.
             imgData1 = canvas.toDataURL('image/png');
@@ -416,23 +407,45 @@ const OrderList = ({ Reset, Edit, TO }) => {
     const setChef = (order, chef)=>{
        let newOrderArr = orderArr.map((basket)=>{
             if(basket.order==order){
-                console.log(basket.order)
+            
                 basket.chef=chef
                 return basket
             }
             else return basket
         })
-        console.log(newOrderArr)
+  
         setOrderArr(newOrderArr)
     }
 
+const splitintoline =(data)=>{
+        var dishes2 = data && data.map((ele, idx)=>{
+          let ele2= `${idx+1}.${ele}`
+        
+          // ele2.replace(/,/g, '\n')
+          return ele2
+        })
+       
+        let dishes3 = JSON.stringify(dishes2)
+        let dishes4 = dishes3.replace(/[\[\]'"]+/g,'')
+        let dishes5=[]
+        // dishes5[0]='Dishes'
+        dishes5.push(dishes4)
+        var dishes6 = dishes5.toString().replace(/,/g, '\n')
+     
+      return dishes6
+      }
+    // const memoSetChef = useCallback(setChef, [])
+
+    const memoReadGoogleSheet = useCallback(ReadGoogleSheet, [])
     return <div className='mainOrderlist'>
 
         {/* <Button variant='success' className='Add-btn' onClick={handlerAdd}>Add Order</Button> */}
-        <div class="Orderlist" id="accordionExample">
-            <h1>Order List</h1>
+        <div className="Orderlist" id="accordionExample">
+            <h1>Order list</h1>
                 <div className='orderdatebtn'>
-                    <input type='date' onChange={(e) => { setTime(e) }} className='dateinput'/>
+                    {/* <label id='orderdateinput'>Choose Date</label> */}
+                    <h4>Choose Date</h4>
+                    <input type='date' htmlFor='orderdateinput' onChange={(e) => { setTime(e) }} className='dateinput'/>
                     <Button onClick={() => { ReadGoogleSheet(timeStamp, setOrderArr, setIsLoading) }}>Get orders from Googlesheet</Button>
                 </div>
             <div className='orderlistcomponent'>
@@ -441,23 +454,23 @@ const OrderList = ({ Reset, Edit, TO }) => {
 </Spinner><h1>Loading...</h1></div> : orderArr.map((order, idx) => {
 
 
-                    // console.log('idx ', orderArr.map(item => item))
+                  
 
                     return <div key={idx}>
 
-                        <Accordion defaultActiveKey="0" >
+                        <Accordion defaultActiveKey="0" key={`accordian${idx}`}>
                             <Accordion.Item eventKey="1">
                                 {idx + 1}
                                 <Accordion.Header >
-                                    <div className='accHeader' style={!order.chef?{"background-color":"white"}:{"background-color":"rgb(64, 219, 142)"}}>
+                                    <div className='accHeader' style={!order.chef?{backgroundColor:"white"}:{backgroundColor:"rgb(64, 219, 142)"}}>
                                         <p className='Porder'> Order No. :<b>{JSON.stringify(order.order)}</b>   </p> <p>   Guest Name : {order.name}</p>
                                         <div className='btn-div'>
                                             <div>
-                                                {(authrole == 'admin') && <Button variant='danger' onClick={(e) => { handlerDel(e, idx, order.order) }}>Delete order</Button>}
+                                                {(authrole == 'admin') && <Button type="button" variant='danger' onClick={(e) => { handlerDel(e, idx, order.order) }}>Delete order</Button>}
                                             </div>
                                             <div>
-                                                {(authrole == 'admin') && <Button onClick={(e) => { isToggle.edit == false ? handlerEdit(e, idx, order.order) : confirm(e, idx) }}>{true ? "Edit order" : "Confirm"}</Button>}
-                                                {(authrole == 'basic') && ((!order.chef) ? <Button onClick={(e) => { handlerEdit(e, idx, order.order) }}>Assing Chef</Button> : <Button variant='success' onClick={(e) => { handlerEdit(e, idx, order.order) }}>Edit Assigned Chef</Button>)}
+                                                {(authrole == 'admin') && <Button type="button" onClick={(e) => { isToggle.edit == false ? handlerEdit(e, idx, order.order) : confirm(e, idx) }}>{true ? "Edit order" : "Confirm"}</Button>}
+                                                {(authrole == 'basic') && ((!order.chef) ? <Button type="button"onClick={(e) => { handlerEdit(e, idx, order.order) }}>Assing Chef</Button> : <Button variant='success' onClick={(e) => { handlerEdit(e, idx, order.order) }}>Edit Assigned Chef</Button>)}
                                             </div>
                                         </div>
 
@@ -469,6 +482,7 @@ const OrderList = ({ Reset, Edit, TO }) => {
                                     {(authrole == 'admin') &&
                                         <div id={'can' + order.order}>
                                             <table className='table1'>
+                                               <tbody>
                                                 <tr>
                                                     <th>Order Date</th>
                                                     <td>{order.date}</td>
@@ -489,13 +503,13 @@ const OrderList = ({ Reset, Edit, TO }) => {
                                                     <th>Serving Location</th>
                                                     <td>{order.location}</td>
                                                 </tr>
-
+                                                </tbody>
                                             </table>
                                             <h5 className="dish">Selected Dishes</h5>
-                                            <div className='menulist' key={idx}>
+                                            <div className='menulist' >
                                                 {order.menu && order.menu.map((item, idx) => {
                                                     return (
-                                                        <p1 className='dishNamee' key={idx}>{idx + 1 + ' ' + item}</p1>
+                                                        <p1 className='dishNamee' >{idx + 1 + ' ' + item}</p1>
                                                     )
                                                 })}
 
@@ -530,7 +544,7 @@ const OrderList = ({ Reset, Edit, TO }) => {
                             </Accordion.Item>
                         </Accordion>
 
-                        <AssignedChef orderNumber={order.order} setChef={setChef}/>
+                        <AssignedChef orderNumber={order.order} setChef={setChef} key={`assign${idx}`}/>
 
 
                     </div>

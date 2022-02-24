@@ -17,9 +17,9 @@ export function RequireAuth({ children }) {
 // let ID = authed.timer()
 const change=(id, newVal, token)=>{
     clearTimeout(id); //clearing the previous timer using the id
-    console.log('previous timeout cleared', id)
+    // console.log('previous timeout cleared', id)
     setTimeout(()=>{
-    console.log('-------------------Time out Extended')
+    // console.log('-------------------Time out Extended')
     authed.setAuthed(token)
   }, newVal);
 }
@@ -27,7 +27,7 @@ const change=(id, newVal, token)=>{
 // console.log(ID)
 // myFunction()
 const isVerified = jwt.verify(authed.authed, 'secret', (error, verified)=>{
-    console.log('verification')
+    // console.log('verification')
     // console.log(verified)
     // change(ID, 10000, authed.authed);
     return verified
