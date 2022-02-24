@@ -98,9 +98,19 @@ const SalesForm = () => {
 
     const HandleSubmit = async (e) => {
         e.preventDefault()
+        if(formData.order!="" && 
+        formData.data !="" && 
+        formData.advancePaid!="" && 
+        formData.costumerName!="" &&
+         formData.location!="" && 
+         formData.amount!="" && 
+         formData.email!='' &&
+         formData.pickupTime!=""){
+        
         alert(
             'are you sure'
         )
+
         formData.dishes= dishes.menu
         //  setFormData((prev) => { return { ...prev, dishes: dishes.menu } })
      
@@ -112,6 +122,9 @@ const SalesForm = () => {
         })
         // console.log('res is here ', res)
         setFormData(initialFormData)
+    } else {
+        alert('Fill all the fields')
+    }
     }
     // Cross(e,dishes.menu, dishes.menu, setDishes, setDishes )
 
@@ -194,28 +207,28 @@ const SalesForm = () => {
                 <form onSubmit={e => HandleSubmit(e)}>
                     <div className='form-card'>
                         <label>Email Address</label>
-                        <input type='email' className='form-input' onChange={e => setVal(e)} name='email' placeholder='Your Anwer' ></input>
+                        <input type='email' className='form-input' value={formData.email}onChange={e => setVal(e)} name='email' placeholder='Your Anwer' ></input>
                     </div>
                     <div className='form-card'>
                         <label>Order Number</label>
-                        <input type='text' className='form-input' onChange={e => setVal(e)} name='order' placeholder='Your Anwer' ></input>
+                        <input type='text' className='form-input' value={formData.order}onChange={e => setVal(e)} name='order' placeholder='Your Anwer' ></input>
                     </div>
                     <div className='form-card'>
                         <label>Sales Agent</label>
-                        <input type='text' className='form-input' onChange={e => setVal(e)} name='agent' placeholder='Your Anwer' ></input>
+                        <input type='text' className='form-input' value={formData.agent}onChange={e => setVal(e)} name='agent' placeholder='Your Anwer' ></input>
                     </div>
                     <div className='form-card'>
                         <label>Order Date</label>
-                        <input type='Date' className='form-input' onChange={e => setVal(e)} name='date' placeholder='Your Anwer' ></input>
+                        <input type='Date' className='form-input' value={formData.date}onChange={e => setVal(e)} name='date' placeholder='Your Anwer' ></input>
                     </div>
                     <div className='form-card'>
                         <label>Costumer Name</label>
-                        <input type='text' className='form-input' onChange={e => setVal(e)} name='costumerName' placeholder='Your Anwer'></input>
+                        <input type='text' className='form-input' value={formData.costumerName}onChange={e => setVal(e)} name='costumerName' placeholder='Your Anwer'></input>
                     </div>
 
                     <div className='form-card'>
                         <label>Guest Count</label>
-                        <input type='number' className='form-input' onChange={e => setVal(e)} name='guest' placeholder='Your Anwer'></input>
+                        <input type='number' className='form-input' value={formData.guest}onChange={e => setVal(e)} name='guest' placeholder='Your Anwer'></input>
                     </div>
                     <div className='form-card'>
                         <label>Choices Of Dishes</label>
@@ -287,23 +300,23 @@ const SalesForm = () => {
                     </div>
                     <div className='form-card'>
                         <label>Serving Time</label>
-                        <input type='text' className='form-input' onChange={e => setVal(e)} name='servingTime' placeholder='Your Anwer'></input>
+                        <input type='text' className='form-input' value={formData.servingTime} onChange={e => setVal(e)} name='servingTime' placeholder='Your Anwer'></input>
                     </div>
                     <div className='form-card'>
                         <label>Pickup Time</label>
-                        <input type='text' className='form-input' onChange={e => setVal(e)} name='pickupTime' placeholder='Your Anwer' ></input>
+                        <input type='text' className='form-input'value={formData.pickupTime} onChange={e => setVal(e)} name='pickupTime' placeholder='Your Anwer' ></input>
                     </div>
                     <div className='form-card'>
                         <label>Costumer Location</label>
-                        <input type='text' className='form-input' onChange={e => setVal(e)} name='location' placeholder='Your Anwer'></input>
+                        <input type='text' className='form-input' value={formData.location}onChange={e => setVal(e)} name='location' placeholder='Your Anwer'></input>
                     </div>
                     <div className='form-card'>
                         <label>Total Billing Amount</label>
-                        <input type='text' className='form-input' onChange={e => setVal(e)} name='totalBill' placeholder='Your Anwer'></input>
+                        <input type='text' className='form-input' value={formData.totalBill} onChange={e => setVal(e)} name='totalBill' placeholder='Your Anwer'></input>
                     </div>
                     <div className='form-card'>
                         <label>Advance Amount Received</label>
-                        <input type='text' className='form-input' onChange={e => setVal(e)} name='advancePaid' placeholder='Your Anwer'></input>
+                        <input type='text' className='form-input' value={formData.advancePaid}onChange={e => setVal(e)} name='advancePaid' placeholder='Your Anwer'></input>
                     </div>
                     <button type='submit'>Submit</button>
                 </form>
