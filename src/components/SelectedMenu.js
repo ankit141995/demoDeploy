@@ -90,7 +90,7 @@ let tot = allStorage()
         {/* <BrowserRouter> */}
          {/* <Router> */}
                     <div className='id4'>
-                {(role=="admin" || role=="basic") && <div>
+                {(role=="admin" || role=="basic") && <div className='order-tot'>
 
                     <div className='tot'>
                         {tot.length}
@@ -124,7 +124,7 @@ let tot = allStorage()
                 {/* <OrderList OrderDetails={Menu} Reset={Reset} Edit={Edit} TO={TotalOrders} /> */}
             </div>
                    {(role=="admin" || role=="basic") && <div className='button-get'>
-                        <Button className='btn btn-default' onClick={Getquantity}>Get Ingredients</Button>
+                        {/* <Button className='btn btn-default' onClick={Getquantity}>Get Ingredients</Button> */}
                     </div>}
             {/* </BrowserRouter> */}
             {/* </Router> */}

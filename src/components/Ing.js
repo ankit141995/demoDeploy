@@ -55,3 +55,19 @@ const Ing = (res) => {
 };
 
 export default Ing;
+
+
+
+let a = 3
+let b = "3"
+
+let arr = [1,4 ,5, 3, 6]
+let result = []
+const fun =(arr)=>{
+       for(let i = arr.length; i=0; i--){
+           result.push(arr[arr.length-1]) 
+    }
+    return result
+}
+
+console.log(fun(arr))

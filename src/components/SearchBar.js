@@ -448,9 +448,9 @@ const SearchBar = ({ placeHolder }) => {
                         </span>
                     </div>}
                 {/* <Button onClick={handlerAdd}>Add Order</Button> */}
-               {authrole=='admin'&& <Button onClick={()=>location.state ?  confirm(location.state.idx) : handlerAdd()}>{location.state ? 'Confirm Order' : 'Add Order'}</Button>}
                 {authrole=='basic'&& location.state ?  <Button onClick={()=>confirm(location.state.idx)}>Submit</Button>:false}
                {authrole=='admin' && <SelectedMenu Menu={temp} Cross={memoCross} url={url} GuestCount={temp.guest} Reset={Reset} Edit={Edit} updateItem={updateItem}/>}
+               {authrole=='admin'&& <Button className="order-button" onClick={()=>location.state ?  confirm(location.state.idx) : handlerAdd()}>{location.state ? 'Confirm Order' : 'Add Order'}</Button>}
             </div> 
             <Outlet/>
         </>
