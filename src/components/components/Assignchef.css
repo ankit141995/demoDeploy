@@ -1,0 +1,14 @@
+.assignchef{
+display:flex;
+/* flex-direction:column; */
+justify-content:space-between;
+margin-bottom:20px;
+font-weight:bold;
+/* position:absolute; */
+}
+.checkchef{
+    border-radius:7px;
+    border:none;
+    width:200px;
+    margin-left:30px
+}
