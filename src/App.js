@@ -17,6 +17,7 @@ import { CreateUser } from './components/CreateUserForm'
 import AuthConsumer from './components/controllers/auth'
 import Ing from './components/Ing';
 import ChefAssign from './components/ChefAssign'
+import PriceQuote from './components/PriceQuote'
 
 
 
@@ -85,6 +86,7 @@ setTimeout(()=>{
             <Route path='/assign' element={<ChefAssign />} />
 
           <Route path='/createuser' element={<CreateUser />} />
+          <Route path='/pricequote' element={<PriceQuote/>} />
 
 
 
