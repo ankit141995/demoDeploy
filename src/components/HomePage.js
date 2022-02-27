@@ -26,6 +26,7 @@ const ProfileName = str.charAt(0).toUpperCase() + str.slice(1);
                {role=='admin'&&  <Link className="nav-link" to='/createuser'>Create User</Link>}
                {(role=='admin' ||role=='basic') && <Link className="nav-link" to='/pdfgenerator/orders'>{role!='basic'?"Pdf Generator":"Assing chef"}</Link>}
                {(role=='sales'|| role=='admin')&& <Link className="nav-link" to='/form'>Sales Form</Link>}
+               {(role=='sales'|| role=='admin')&& <Link className="nav-link" to='/pricequote'>Price Quote</Link>}
                {/* {(role=='basic'|| role=='admin')&& <Link className="nav-link" to='/assign'>Assign Chef</Link>} */}
                 </div>
                 <div className='right-side'>

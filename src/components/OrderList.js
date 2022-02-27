@@ -31,6 +31,7 @@ const OrderList = ({ Reset, Edit, TO }) => {
     let authrole = authed.user.role
     const [timeStamp, setTimeStamp] = useState('')
     const [isLoading, setIsLoading]=useState(false)
+    const [isDel, setIsDel]=useState(false)
     let location = useLocation()
 
     const [orderArr, setOrderArr] = useState(allStorage())
@@ -163,25 +164,28 @@ const OrderList = ({ Reset, Edit, TO }) => {
     let i
     const handlerDel = (e, idx, onum) => {
         e.preventDefault()
+        alert('deleting the order')
+        // setTimeout(()=>{
+            // setIsDel(true)
 
-        if (isToggle.edit == false) {
-            let key;
+            if (isToggle.edit == false) {
+                let key;
             key = `OrderNumber-${onum}`;
-
-
+            
+            
             delete json[key]
 
             orderNumber.splice(idx, 1)
-
+            
             setOrderArr(orderNumber)
        
             setIsToggle((prev) => { return { ...prev, edit: false } })
             localStorage.removeItem(key)
 
+        //    setIsDel(false)
            
-
         } else {
-
+            
             if (e.target.className.includes(idx)) {
 
                 let key;
@@ -190,17 +194,20 @@ const OrderList = ({ Reset, Edit, TO }) => {
                 delete json[key]
 
                 orderNumber.splice(idx, 1)
-
+                
                 setOrderArr(orderNumber)
                 setIsToggle((prev) => { return { ...prev, edit: false } }
                 )
                 localStorage.removeItem(key)
-            
+                // setIsDel(false)
+                
             } else {
                 alert('wrong delete')
             }
             return false
         }
+    // },2000)
+    // setIsDel(false)
 
     }
     let order = useParams()
@@ -466,7 +473,7 @@ const splitintoline =(data)=>{
                                         <p className='Porder'> Order No. :<b>{JSON.stringify(order.order)}</b>   </p> <p>   Guest Name : {order.name}</p>
                                         <div className='btn-div'>
                                             <div>
-                                                {(authrole == 'admin') && <Button type="button" variant='danger' onClick={(e) => { handlerDel(e, idx, order.order) }}>Delete order</Button>}
+                                                {(authrole == 'admin') && <Button type="button" variant='danger' onClick={(e) => { handlerDel(e, idx, order.order) }}>{isDel?<Spinner animation="border" role="status"></Spinner>:"Delete Order"}</Button>}
                                             </div>
                                             <div>
                                                 {(authrole == 'admin') && <Button type="button" onClick={(e) => { isToggle.edit == false ? handlerEdit(e, idx, order.order) : confirm(e, idx) }}>{true ? "Edit order" : "Confirm"}</Button>}
